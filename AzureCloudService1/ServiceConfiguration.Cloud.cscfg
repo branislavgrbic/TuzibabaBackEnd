@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="AzureCloudService1" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="WebRole1">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=tuzibabastorage;AccountKey=EEVQ7Cj2LOYffPu4cc0lfQ4BKbqzuxjq4D6vfLJBlip23808X/XXPivFbz2cjLBXVXHGJw9GoppyknW90XXXtw==" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>
