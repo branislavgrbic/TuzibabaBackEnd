@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows;
-using System.Data.SqlClient;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
