@@ -320,7 +320,7 @@ Response.Write("Exception" + BlueScreen.ToString());
                         HttpPostedFile MyFile = Request.Files["userfile"];
                         fileLocation = "";
                         //Setting location to upload files
-                        string TargetLocation = Server.MapPath("images/");
+                   //     string TargetLocation = Server.MapPath("images/");
                         try
                         {
                             if (MyFile.ContentLength > 0)
@@ -340,7 +340,7 @@ Response.Write("Exception" + BlueScreen.ToString());
                                 //Uploading properly formatted file to server.
                              //   MyFile.SaveAs(TargetLocation + "uploaded_image" + newId + ".jpg");
                                
-                                string fileLoc = TargetLocation + "uploaded_image" + newId + ".jpg";
+                      //          string fileLoc = TargetLocation + "uploaded_image" + newId + ".jpg";
                                 saveName = "uploaded_image" + newId + ".jpg";
                               //  fileLocation = FileName;
 
@@ -349,7 +349,7 @@ Response.Write("Exception" + BlueScreen.ToString());
                                 {
                                     // Retrieve storage account from connection string.                    
                                     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                                   CloudConfigurationManager.GetSetting("StorageConnectionString"));
+                                        CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
 
                                     // Create the blob client.
