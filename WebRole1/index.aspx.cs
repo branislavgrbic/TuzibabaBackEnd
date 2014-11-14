@@ -390,7 +390,7 @@ Response.Write("Exception" + BlueScreen.ToString());
                                                 command.ExecuteNonQuery();
                                                // newId = (Int32)command.ExecuteScalar();
                                                 conn.Close();
-
+                                                Response.Write("Successfully uploaded!");
                                             }
                                         }
                                     }
@@ -415,7 +415,7 @@ Response.Write("Exception" + BlueScreen.ToString());
                                                 command.ExecuteNonQuery();
                                                 // newId = (Int32)command.ExecuteScalar();
                                                 conn.Close();
-
+                                                Response.Write("Successfully uploaded!");
                                             }
                                         }
                                     }
