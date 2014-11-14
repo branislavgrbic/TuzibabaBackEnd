@@ -423,7 +423,7 @@ Response.Write("Exception" + BlueScreen.ToString());
                                 }
                                 catch (Exception e22)
                                 {
-                                    Response.Write("Error storage1 :" + " File path: " + fileLocation + " error log : " + e22.ToString());
+                                    Response.Write("Error storage1 :" + " File path: " + fileLocation + " error log : ********" + e22.ToString());
                                 }
 
                                 // save image to Azure
