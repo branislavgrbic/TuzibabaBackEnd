@@ -30,6 +30,7 @@ namespace WebApplication1
         int category_num = 0;
         string fileLocation = "";
         string saveName = "";
+        string saveNameThumb = "";
         Int32 newId;
         // Provide the following information
         private static string userName = "brance";
@@ -239,7 +240,7 @@ namespace WebApplication1
                             {
                               
                                 saveName = "uploaded_image" + newId + ".jpg";
-                             
+                                saveNameThumb = saveName = "uploaded_image_t" + newId + ".jpg";
                                 try
                                 {
                                     // Retrieve storage account from connection string.                    
@@ -257,9 +258,37 @@ namespace WebApplication1
                                     CloudBlockBlob blockBlob = container.GetBlockBlobReference(saveName);
 
                                     blockBlob.UploadFromStream(MyFile.InputStream);
+                                   
+                                    // Create thumbnail of uploaded image
+                                    int width = 300;
+                                    int height = 300;
+                                    Bitmap srcBmp = new Bitmap(MyFile.InputStream);
+                                    float ratio = srcBmp.Width / srcBmp.Height;
+                                    SizeF newSize = new SizeF(width, height * ratio);
+                                    Bitmap target = new Bitmap((int)newSize.Width, (int)newSize.Height);
+
+                                    /* *********************************
+                                     *  upload thumbnail to blobStorage
+                                     * ********************************** */ 
+                                    // Retrieve reference to a blob named "myblob".
+                                    blockBlob = container.GetBlockBlobReference(saveNameThumb);
+                                    ImageConverter converter = new ImageConverter();
+                                    byte[] byteArray = new byte[0];
+                                    using (MemoryStream stream = new MemoryStream())
+                                    {
+                                        target.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                                        stream.Close();
+                                        byteArray = stream.ToArray();
+                                    }
+                                    using (var stream = new MemoryStream(byteArray, writable: false))
+                                    {
+                                        blockBlob.UploadFromStream(stream);
+                                    }
+
+
                                     // Update DB
                                     // Read GeoTag from image : coord_ret[0] = latitude; coord_ret[1] = longitude;
-          // disabled                          double[] myCoordinates = Test(MyFile);
+                                    // disabled double[] myCoordinates = Test(MyFile);
                                     double[] myCoordinates = null;
                                     if (myCoordinates != null)
                                     {
