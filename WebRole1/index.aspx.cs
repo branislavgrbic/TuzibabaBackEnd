@@ -263,18 +263,18 @@ namespace WebApplication1
                                     blockBlob.UploadFromStream(MyFile.InputStream);
                                    
                                     // Create thumbnail of uploaded image
-                                    int width = 300;
+                              /*      int width = 300;
                                     int height = 300;
                                     float ratio = srcBmp.Width / srcBmp.Height;
                                     SizeF newSize = new SizeF(width, height * ratio);
                                     Bitmap target = new Bitmap((int)newSize.Width, (int)newSize.Height);
-                                    
+                                    */
                                    
                                     /* *********************************
                                      *  upload thumbnail to blobStorage
                                      * ********************************** */ 
                                     // Retrieve reference to a blob named "myblob".
-                                    blockBlob = container.GetBlockBlobReference(saveNameThumb);
+                            /*        blockBlob = container.GetBlockBlobReference(saveNameThumb);
                                     ImageConverter converter = new ImageConverter();
                                     byte[] byteArray = new byte[0];
                                     using (MemoryStream stream = new MemoryStream())
@@ -288,7 +288,7 @@ namespace WebApplication1
                                         blockBlob.UploadFromStream(stream);
                                     }
 
-
+                                 */
                                     // Update DB
                                     // Read GeoTag from image : coord_ret[0] = latitude; coord_ret[1] = longitude;
                                     // disabled double[] myCoordinates = Test(MyFile);
