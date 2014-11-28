@@ -232,6 +232,9 @@ namespace WebApplication1
                     {
                         HttpPostedFile MyFile = Request.Files["userfile"];
                         fileLocation = "";
+                        // set bitmap of the file for downsizing for thumbnail
+                        Bitmap srcBmp = new Bitmap(MyFile.InputStream);
+
                         //Setting location to upload files
                    //     string TargetLocation = Server.MapPath("images/");
                         try
@@ -262,11 +265,11 @@ namespace WebApplication1
                                     // Create thumbnail of uploaded image
                                     int width = 300;
                                     int height = 300;
-                                    Bitmap srcBmp = new Bitmap(MyFile.InputStream);
                                     float ratio = srcBmp.Width / srcBmp.Height;
                                     SizeF newSize = new SizeF(width, height * ratio);
                                     Bitmap target = new Bitmap((int)newSize.Width, (int)newSize.Height);
-
+                                    
+                                   
                                     /* *********************************
                                      *  upload thumbnail to blobStorage
                                      * ********************************** */ 
@@ -362,10 +365,25 @@ namespace WebApplication1
                 }
 
         }
-     
-    }
 
+        public bool ThumbnailCallback()
+        {
+            return true;
+        }
+
+        private System.Drawing.Image GetThumbnail(Bitmap image)
+        {
+
+            System.Drawing.Image.GetThumbnailImageAbort callback =
+                new System.Drawing.Image.GetThumbnailImageAbort(ThumbnailCallback);
+            System.Drawing.Image t_image = new Bitmap(image);
+            System.Drawing.Image pThumbnail = t_image.GetThumbnailImage(100, 100, callback, new
+               IntPtr());
+            return (pThumbnail);
+        }
  
+    }
+    
 }
 
  
